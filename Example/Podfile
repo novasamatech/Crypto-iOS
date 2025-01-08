@@ -1,0 +1,24 @@
+platform :ios, '14.0'
+
+abstract_target 'IrohaCrypto' do
+    use_frameworks!
+
+    pod 'NovaCrypto', :path => '../'
+    pod 'secp256k1.c', :git => 'https://github.com/novasamatech/secp256k1.c', :tag => '0.1.3'
+    pod 'sr25519.c', :git => 'https://github.com/novasamatech/sr25519.c', :commit => '9b4c59b6445cdc72a71c22227fcee750d4025207'
+    pod 'blake2.c', :git => 'https://github.com/novasamatech/blake2.c', :commit => 'e89ae2342bc12c58c29e5acd1b4d1c008aed1d75'
+    pod 'ed25519.c', :git => 'https://github.com/novasamatech/ed25519.c', :commit => 'f2bcdc61dc033d823c460d2321616fd4e90d9088'
+    
+    target 'NovaCryptoExample'
+    target 'NovaCryptoTests'
+end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+            end
+        end
+    end
+end
