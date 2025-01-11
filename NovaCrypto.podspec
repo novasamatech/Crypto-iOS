@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'blake2' do |b2|
     b2.source_files = 'Sources/blake2/**/*'
-    b2.dependency 'blake2.c', '~> 0.0.1'
+    b2.dependency 'blake2.c', '~> 0.1.0'
   end
 
   s.subspec 'secp256k1' do |secp|
@@ -58,7 +58,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'ed25519' do |ed|
     ed.dependency 'NovaCrypto/Common'
-    ed.dependency 'ed25519.c', '~> 0.0.1'
+    ed.dependency 'ed25519.c', '~> 0.1.0'
     ed.source_files = 'Sources/ed25519/**/*'
   end
 
@@ -69,7 +69,7 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Sources/ss58/**/*.h'
   end
   
-  s.libraries = "sr25519c"
+  s.libraries = "sr25519"
   
   s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => "NO", 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => "YES", 'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519.c" }
 

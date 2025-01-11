@@ -6,7 +6,7 @@
 //
 
 #import "SNPrivateKey.h"
-@import sr25519c;
+@import sr25519;
 
 @interface SNPrivateKey()
 

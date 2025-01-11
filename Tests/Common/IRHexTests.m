@@ -25,14 +25,14 @@
 }
 
 - (void)testDataToHex {
-    for (int index; index < MESSAGES_COUNT; index++) {
+    for (int index = 0; index < MESSAGES_COUNT; index++) {
         NSString *hexString = [[[NSData alloc] initWithBase64EncodedString:MESSAGES[index] options:0] toHexString];
         XCTAssertEqualObjects(hexString, HEX_MESSAGES[index]);
     }
 }
 
 - (void)testHexToData {
-    for (int index; index < MESSAGES_COUNT; index++) {
+    for (int index = 0; index < MESSAGES_COUNT; index++) {
         NSData *data = [[NSData alloc] initWithHexString:HEX_MESSAGES[index] error:nil];
         NSData *expected = [[NSData alloc] initWithBase64EncodedString:MESSAGES[index] options:0];
         XCTAssertEqualObjects(data, expected);
@@ -40,7 +40,7 @@
 }
 
 - (void)testUppercaseHexToData {
-    for (int index; index < MESSAGES_COUNT; index++) {
+    for (int index = 0; index < MESSAGES_COUNT; index++) {
         NSData *data = [[NSData alloc] initWithHexString:[HEX_MESSAGES[index] uppercaseString] error:nil];
         NSData *expected = [[NSData alloc] initWithBase64EncodedString:MESSAGES[index] options:0];
         XCTAssertEqualObjects(data, expected);

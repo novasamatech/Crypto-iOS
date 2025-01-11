@@ -1,6 +1,6 @@
 PODS:
-  - blake2.c (0.0.1)
-  - ed25519.c (0.0.1)
+  - blake2.c (0.1.0)
+  - ed25519.c (0.1.1)
   - NovaCrypto (0.1.0):
     - NovaCrypto/BIP39 (= 0.1.0)
     - NovaCrypto/blake2 (= 0.1.0)
@@ -13,10 +13,10 @@ PODS:
   - NovaCrypto/BIP39 (0.1.0):
     - NovaCrypto/Common
   - NovaCrypto/blake2 (0.1.0):
-    - blake2.c (~> 0.0.1)
+    - blake2.c (~> 0.1.0)
   - NovaCrypto/Common (0.1.0)
   - NovaCrypto/ed25519 (0.1.0):
-    - ed25519.c (~> 0.0.1)
+    - ed25519.c (~> 0.1.0)
     - NovaCrypto/Common
   - NovaCrypto/Scrypt (0.1.0):
     - NovaCrypto/Common
@@ -37,11 +37,11 @@ PODS:
   - sr25519.c (0.1.0)
 
 DEPENDENCIES:
-  - blake2.c (from `https://github.com/novasamatech/blake2.c`, commit `e89ae2342bc12c58c29e5acd1b4d1c008aed1d75`)
-  - ed25519.c (from `https://github.com/novasamatech/ed25519.c`, commit `f2bcdc61dc033d823c460d2321616fd4e90d9088`)
+  - blake2.c (from `https://github.com/novasamatech/blake2.c`, tag `0.1.0`)
+  - ed25519.c (from `https://github.com/novasamatech/ed25519.c`, tag `0.1.1`)
   - NovaCrypto (from `../`)
   - secp256k1.c (from `https://github.com/novasamatech/secp256k1.c`, tag `0.1.3`)
-  - sr25519.c (from `https://github.com/novasamatech/sr25519.c`, commit `9b4c59b6445cdc72a71c22227fcee750d4025207`)
+  - sr25519.c (from `https://github.com/novasamatech/sr25519.c`, tag `0.1.0`)
 
 SPEC REPOS:
   trunk:
@@ -49,42 +49,42 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   blake2.c:
-    :commit: e89ae2342bc12c58c29e5acd1b4d1c008aed1d75
     :git: https://github.com/novasamatech/blake2.c
+    :tag: 0.1.0
   ed25519.c:
-    :commit: f2bcdc61dc033d823c460d2321616fd4e90d9088
     :git: https://github.com/novasamatech/ed25519.c
+    :tag: 0.1.1
   NovaCrypto:
     :path: "../"
   secp256k1.c:
     :git: https://github.com/novasamatech/secp256k1.c
     :tag: 0.1.3
   sr25519.c:
-    :commit: 9b4c59b6445cdc72a71c22227fcee750d4025207
     :git: https://github.com/novasamatech/sr25519.c
+    :tag: 0.1.0
 
 CHECKOUT OPTIONS:
   blake2.c:
-    :commit: e89ae2342bc12c58c29e5acd1b4d1c008aed1d75
     :git: https://github.com/novasamatech/blake2.c
+    :tag: 0.1.0
   ed25519.c:
-    :commit: f2bcdc61dc033d823c460d2321616fd4e90d9088
     :git: https://github.com/novasamatech/ed25519.c
+    :tag: 0.1.1
   secp256k1.c:
     :git: https://github.com/novasamatech/secp256k1.c
     :tag: 0.1.3
   sr25519.c:
-    :commit: 9b4c59b6445cdc72a71c22227fcee750d4025207
     :git: https://github.com/novasamatech/sr25519.c
+    :tag: 0.1.0
 
 SPEC CHECKSUMS:
-  blake2.c: 3ef42c61a55aed95ec2e74d48964da13bdddc8d1
-  ed25519.c: 56ddade27476b5efed0bc094707feef3b27efb1a
-  NovaCrypto: bc0b8dca9e55804f82a0f9fa482bb5b513b2353f
+  blake2.c: 49d32e8c358161437c30a04d325be708233d221e
+  ed25519.c: ef3089bbe0f9206085dbf00b32080bfdfc0c443e
+  NovaCrypto: bf2afb5b00bc3b9c956b1ae13fd09716c2a21e1d
   scrypt.c: b42ae06183251329d2b2c620c226fb541a4a3592
   secp256k1.c: 9df12a79da0a6735022c5d996d2df6a6e57e1d99
-  sr25519.c: 3f6eac245eab6aecebb6d5248d9042228f7446a4
+  sr25519.c: 6c5d747682f45fd081c1e34d54cd322acee321b5
 
-PODFILE CHECKSUM: 3d45b0521b42bb408bc3bbeabf776e155770a7f4
+PODFILE CHECKSUM: 039a0e537e99f49633d0a4dcb787e1ebdba98862
 
 COCOAPODS: 1.15.2

@@ -6,7 +6,7 @@
 //
 
 #import "SNSigner.h"
-@import sr25519c;
+@import sr25519;
 
 @interface SNSigner()
 
