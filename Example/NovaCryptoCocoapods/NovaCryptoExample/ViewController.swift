@@ -1,13 +1,5 @@
-//
-//  ViewController.swift
-//  IrohaCryptoExample
-//
-//  Created by Ruslan Rezin on 17/10/2018.
-//  Copyright © 2018 Ruslan Rezin. All rights reserved.
-//
-
 import UIKit
-import IrohaCrypto
+import NovaCrypto
 
 class ViewController: UIViewController {
 
@@ -17,7 +9,7 @@ class ViewController: UIViewController {
     @IBOutlet private var publicKeyLabel: UILabel!
     @IBOutlet private var signatureLabel: UILabel!
 
-    private let keyFactory = IRIrohaKeyFactory();
+    private let keyFactory = NovaCrypto.EDKeyFactory()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +26,7 @@ class ViewController: UIViewController {
 
             let publicKeyString = keypair.publicKey().rawData().base64EncodedString()
 
-            let signer = IRIrohaSigner(privateKey: keypair.privateKey())
+            let signer = EDSigner(privateKey: keypair.privateKey())
 
             guard let messageData = messageTextView.text.data(using: .utf8) else {
                 print("Message data must not be nil")
@@ -57,8 +49,8 @@ class ViewController: UIViewController {
         var privateKey: IRPrivateKeyProtocol
 
         if privatePhraseTextView.text.count > 0, let textData = privatePhraseTextView.text.data(using: .utf8) {
-            let rawKey = try (textData as NSData).sha3(.variant256)
-            privateKey = try IRIrohaPrivateKey(rawData: rawKey)
+            let rawKey = try (textData as NSData).blake2b()
+            privateKey = try EDPrivateKey(rawData: rawKey)
             return try keyFactory.derive(fromPrivateKey: privateKey)
         } else {
             return try keyFactory.createRandomKeypair()
