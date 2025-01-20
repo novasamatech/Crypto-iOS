@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  IrohaCryptoExample
-//
-//  Created by Ruslan Rezin on 17/10/2018.
-//  Copyright © 2018 Ruslan Rezin. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
