@@ -9,14 +9,7 @@ let package = Package(
         .library(
             name: "NovaCrypto",
             targets: [
-                "BIP39",
-                "blake2",
-                "ed25519",
-                "ScryptExtension",
-                "secp256k1",
-                "sr25519",
-                "ss58",
-                "Common"
+                "NovaCrypto"
             ]
         )
     ],
@@ -32,6 +25,19 @@ let package = Package(
 
 var targets: [Target] {
     [
+        .target(
+            name: "NovaCrypto",
+            dependencies: [
+                "BIP39",
+                "blake2",
+                "ed25519",
+                "ScryptExtension",
+                "secp256k1",
+                "sr25519",
+                "ss58",
+                "Common"
+            ]
+        ),
         .target(
             name: "Common",
             publicHeadersPath: "."
