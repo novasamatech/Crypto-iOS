@@ -6,7 +6,7 @@
 //
 
 #import "SNSignatureVerifier.h"
-@import sr25519;
+#import "sr25519.h"
 
 @implementation SNSignatureVerifier
 

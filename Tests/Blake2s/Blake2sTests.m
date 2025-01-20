@@ -7,7 +7,8 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "NSData+Blake2.h"
+#import "NSData+Hex.h"
 
 static const int MESSAGES_COUNT = 4;
 

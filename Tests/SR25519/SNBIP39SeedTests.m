@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-@import NovaCrypto;
+#import "SNBIP39SeedCreator.h"
 #import "IRBIP39TestData+Load.h"
+#if __has_include(<NovaCrypto/NSData+Hex.h>)
+#import "NovaCrypto/NSData+Hex.h"
+#endif
 
 @interface SNBIP39SeedTests : XCTestCase
 
@@ -20,9 +23,17 @@
     NSError *error = nil;
 
     NSString *testPassphrase = @"Substrate";
-    NSArray<IRBIP39TestData*> *tests = [IRBIP39TestData loadFromFilename:@"substrateTestVectors.json"
-                                                                language:@"english"
-                                                                   error:&error];
+    NSBundle *testBundle;
+#if SWIFT_PACKAGE
+    testBundle = SWIFTPM_MODULE_BUNDLE;
+#else
+    testBundle = [NSBundle bundleForClass:[self class]];
+#endif
+    
+    NSArray<IRBIP39TestData*> *tests = [IRBIP39TestData loadFromBundle: testBundle
+                                                              filename:@"substrateTestVectors.json"
+                                                              language:@"english"
+                                                                 error:&error];
 
     if (error != nil) {
         NSString *message = [error localizedDescription];

@@ -10,12 +10,12 @@
 
 @implementation IRBIP39TestData (Load)
 
-+ (nonnull NSArray<IRBIP39TestData*>*)loadFromFilename:(nonnull NSString*)filename
++ (nonnull NSArray<IRBIP39TestData*>*)loadFromBundle:(nonnull NSBundle *)bundle
+                                            filename:(nonnull NSString*)filename
                                               language:(nonnull NSString*)language
                                                  error:(NSError*_Nullable*_Nullable)error {
-
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:[filename stringByDeletingPathExtension]
-                                                         ofType:[filename pathExtension]];
+    NSString *filePath = [bundle pathForResource:[filename stringByDeletingPathExtension]
+                                              ofType:[filename pathExtension]];
     if (!filePath) {
         if (error != nil) {
             NSString *message = @"File doesn't exists";

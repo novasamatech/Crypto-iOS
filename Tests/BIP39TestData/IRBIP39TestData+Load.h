@@ -15,8 +15,9 @@ typedef NS_ENUM(NSUInteger, IRIRBIP39DataLoadingError) {
 
 @interface IRBIP39TestData (Load)
 
-+ (nonnull NSArray<IRBIP39TestData*>*)loadFromFilename:(nonnull NSString*)filename
-                                              language:(nonnull NSString*)language
-                                                 error:(NSError*_Nullable*_Nullable)error;
++ (nonnull NSArray<IRBIP39TestData*>*)loadFromBundle: (nonnull NSBundle*)bundle
+                                            filename:(nonnull NSString*)filename
+                                            language:(nonnull NSString*)language
+                                               error:(NSError*_Nullable*_Nullable)error;
 
 @end

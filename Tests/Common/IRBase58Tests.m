@@ -7,8 +7,11 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "NSData+Hex.h"
 #import "IRBase58TestData+Load.h"
+#if __has_include(<NovaCrypto/NSData+Base58.h>)
+#import <NovaCrypto/NSData+Base58.h>
+#endif
 
 @interface IRBase58Tests : XCTestCase
 

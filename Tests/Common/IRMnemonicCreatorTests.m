@@ -7,8 +7,11 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "IRMnemonicCreator.h"
 #import "Constants.h"
+#if __has_include(<NovaCrypto/NSData+Hex.h>)
+#import <NovaCrypto/NSData+Hex.h>
+#endif
 
 @interface IRMnemonicCreatorTests : XCTestCase
 

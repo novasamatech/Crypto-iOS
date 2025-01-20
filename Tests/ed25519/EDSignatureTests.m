@@ -7,8 +7,20 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "EDSignatureVerifier.h"
 #import "EDTestConstants.h"
+#if __has_include(<NovaCrypto/NSData+Hex.h>)
+#import <NovaCrypto/NSData+Hex.h>
+#endif
+#if __has_include(<NovaCrypto/EDKeyFactory.h>)
+#import <NovaCrypto/EDKeyFactory.h>
+#endif
+#if __has_include(<NovaCrypto/EDPublicKey.h>)
+#import <NovaCrypto/EDPublicKey.h>
+#endif
+#if __has_include(<NovaCrypto/EDSigner.h>)
+#import <NovaCrypto/EDSigner.h>
+#endif
 
 @interface EDSignatureTests : XCTestCase
 

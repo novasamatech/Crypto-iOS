@@ -7,8 +7,11 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "IRSeedCreator+Scrypt.h"
 #import "Constants.h"
+#if __has_include(<NovaCrypto/NSData+Hex.h>)
+#import <NovaCrypto/NSData+Hex.h>
+#endif
 
 static NSString* const TEST_PASSWORD = @"testPassword";
 static NSString* const TEST_PROJECT = @"testProject";

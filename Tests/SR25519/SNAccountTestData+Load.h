@@ -15,7 +15,8 @@ typedef NS_ENUM(NSUInteger, SNAccountTestDataLoadingError) {
 
 @interface SNAccountTestData (Load)
 
-+ (nonnull NSArray<SNAccountTestData*>*)loadFromFilename:(nonnull NSString*)filename
++ (nonnull NSArray<SNAccountTestData*>*)loadFromBundle: (nonnull NSBundle*)bundle
+                                              filename:(nonnull NSString*)filename
                                                 language:(nonnull NSString*)language
                                                    error:(NSError*_Nullable*_Nullable)error;
 

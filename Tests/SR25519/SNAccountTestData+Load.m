@@ -10,11 +10,12 @@
 
 @implementation SNAccountTestData (Load)
 
-+ (nonnull NSArray<SNAccountTestData*>*)loadFromFilename:(nonnull NSString*)filename
++ (nonnull NSArray<SNAccountTestData*>*)loadFromBundle: (nonnull NSBundle*)bundle
+                                              filename:(nonnull NSString*)filename
                                                 language:(nonnull NSString*)language
                                                    error:(NSError*_Nullable*_Nullable)error {
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:[filename stringByDeletingPathExtension]
-                                                         ofType:[filename pathExtension]];
+    NSString *filePath = [bundle pathForResource:[filename stringByDeletingPathExtension]
+                                          ofType:[filename pathExtension]];
     if (!filePath) {
         if (error != nil) {
             NSString *message = @"File doesn't exists";
