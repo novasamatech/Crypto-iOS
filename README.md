@@ -16,6 +16,12 @@ Note that implementation of the several algorithms used by NovaCrypto must be ma
 
 ## Usage with Swift Package Manager
 
+Add NovaCrypto to your package dependency
 ```
-Comming soon
+.package(url: "https://github.com/novasamatech/Crypto-iOS", branch: "master")
+```
+
+or to your project dependency
+```
+https://github.com/novasamatech/Crypto-iOS
 ```
