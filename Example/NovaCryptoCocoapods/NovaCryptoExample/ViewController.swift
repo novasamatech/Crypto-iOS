@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         var privateKey: IRPrivateKeyProtocol
 
         if privatePhraseTextView.text.count > 0, let textData = privatePhraseTextView.text.data(using: .utf8) {
-            let rawKey = try (textData as NSData).blake2b()
+            let rawKey = try (textData as NSData).blake2b(32)
             privateKey = try EDPrivateKey(rawData: rawKey)
             return try keyFactory.derive(fromPrivateKey: privateKey)
         } else {
