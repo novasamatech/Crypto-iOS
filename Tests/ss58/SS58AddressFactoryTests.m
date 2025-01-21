@@ -10,13 +10,6 @@
 #import "SS58AddressFactory.h"
 #import "SECKeyFactory.h"
 #import "SNPublicKey.h"
-#if __has_include(<NovaCrypto/NSData+Hex.h>)
-#import <NovaCrypto/NSData+Hex.h>
-#endif
-#if __has_include(<NovaCrypto/SECPrivateKey.h>)
-#import <NovaCrypto/SECPrivateKey.h>
-#endif
-
 
 static const int ADDRESS_COUNT = 7;
 

@@ -10,12 +10,6 @@
 #import "SNKeyFactory.h"
 #import "SNBIP39SeedCreator.h"
 #import "SNAccountTestData+Load.h"
-#if __has_include(<NovaCrypto/IRMnemonicCreator.h>)
-#import "NovaCrypto/IRMnemonicCreator.h"
-#endif
-#if __has_include(<NovaCrypto/NSData+Hex.h>)
-#import "NovaCrypto/NSData+Hex.h"
-#endif
 
 @interface SNKeyFactoryTests : XCTestCase
 

@@ -8,19 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "sr25519.h"
-
-#if __has_include(<NovaCrypto/NSData+Hex.h>)
-#import "NovaCrypto/NSData+Hex.h"
-#else
-//#import "NSData+Hex.h"
-#endif
-
-#if __has_include(<NovaCrypto/SNPrivateKey.h>)
-#import "NovaCrypto/SNPrivateKey.h"
-#else
 #import "SNPrivateKey.h"
-#endif
-
 
 static const int KEYS_COUNT = 1;
 
