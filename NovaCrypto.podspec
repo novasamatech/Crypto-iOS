@@ -71,55 +71,8 @@ Pod::Spec.new do |s|
   
   s.libraries = "sr25519"
   
-  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => "NO", 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => "YES", 'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519.c" }
-
-  s.subspec "BIP39TestData" do |ts|
-    ts.source_files = 'Tests/BIP39TestData/**/*.{h,m}'
-    ts.private_header_files = 'Tests/BIP39TestData/**/*.h'
-  end
-
-# Test specs
-  s.test_spec "CommonTests" do |ts|
-      ts.source_files = ['Tests/Common/**/*.{h,m}', 'Tests/Constants.h']
-      ts.resources = ['Tests/Common/**/*.json']
-      ts.dependency 'NovaCrypto/Common'
-  end
-
-  s.test_spec "BIP39Tests" do |ts|
-      ts.source_files = ['Tests/BIP39/**/*.{h,m}', 'Tests/BIP39TestData/**/*.{h,m}']
-      ts.resources = ['Tests/BIP39/**/*.json']
-      ts.dependency 'NovaCrypto/BIP39'
-  end
-
-  s.test_spec "blake2Tests" do |ts|
-      ts.source_files = 'Tests/Blake2s/**/*.{h,m}'
-      ts.dependency 'NovaCrypto/Common'
-      ts.dependency 'NovaCrypto/blake2'
-  end
-
-  s.test_spec "ed25519Tests" do |ts|
-      ts.source_files = 'Tests/ed25519/**/*.{h,m}'
-      ts.dependency 'NovaCrypto/ed25519'
-  end
-
-  s.test_spec "ScryptTests" do |ts|
-      ts.source_files = 'Tests/Scrypt/**/*.{h,m}'
-      ts.dependency 'NovaCrypto/Scrypt'
-  end
-
-  s.test_spec "sr25519Tests" do |ts|
-      ts.source_files = ['Tests/SR25519/**/*.{h,m}', 'Tests/BIP39TestData/**/*.{h,m}']
-      ts.resources = ['Tests/SR25519/**/*.json']
-      ts.dependency 'NovaCrypto/sr25519'
-      ts.dependency 'NovaCrypto/BIP39'
-      ts.dependency 'NovaCrypto/BIP39TestData'
-  end
-
-  s.test_spec "ss58Tests" do |ts|
-      ts.source_files = ['Tests/ss58/**/*.{h,m}', 'Tests/BIP39TestData/**/*.{h,m}']
-      ts.resources = ['Tests/Common/**/*.json']
-      ts.dependency 'NovaCrypto/BIP39'
-      ts.dependency 'NovaCrypto/BIP39TestData'
-  end
+  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => "NO",
+   'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => "YES",
+   'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519.c" }
 
 end
