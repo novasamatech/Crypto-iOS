@@ -20,7 +20,8 @@ let package = Package(
         .package(url: "https://github.com/novasamatech/blake2.c", exact: "0.1.1"),
         .package(url: "https://github.com/v57/scrypt.c", exact: "0.1.1")
     ],
-    targets: targets + testTargets
+    targets: targets + testTargets,
+    swiftLanguageVersions: [.v5]
 )
 
 var targets: [Target] {
