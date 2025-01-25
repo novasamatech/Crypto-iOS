@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-@import NovaCrypto;
+#import "IRBIP39SeedCreator.h"
 #import "IRBIP39TestData+Load.h"
 #import "Constants.h"
 
@@ -21,7 +21,14 @@
     NSError *error = nil;
 
     NSString *testPassphrase = @"TREZOR";
-    NSArray<IRBIP39TestData*> *tests = [IRBIP39TestData loadFromFilename:@"bip39vectors.json"
+    NSBundle *testBundle;
+#if SWIFT_PACKAGE
+    testBundle = SWIFTPM_MODULE_BUNDLE;
+#else
+    testBundle = [NSBundle bundleForClass:[self class]];
+#endif
+    NSArray<IRBIP39TestData*> *tests = [IRBIP39TestData loadFromBundle:testBundle
+                                                              filename:@"bip39vectors.json"
                                                                 language:@"english"
                                                                    error:&error];
 

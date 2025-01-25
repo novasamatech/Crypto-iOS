@@ -12,8 +12,16 @@
 
 + (nonnull NSArray<IRBase58TestData*>*)loadFromFilename:(nonnull NSString*)filename
                                                   error:(NSError*_Nullable*_Nullable)error {
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:[filename stringByDeletingPathExtension]
-                                                         ofType:[filename pathExtension]];
+    NSBundle *testBundle;
+#if SWIFT_PACKAGE
+    testBundle = SWIFTPM_MODULE_BUNDLE;
+#else
+    testBundle = [NSBundle bundleForClass:[self class]];
+#endif
+    
+    NSString *filePath = [testBundle pathForResource:[filename stringByDeletingPathExtension]
+                                              ofType:[filename pathExtension]];
+    
     if (!filePath) {
         if (error != nil) {
             NSString *message = @"File doesn't exists";

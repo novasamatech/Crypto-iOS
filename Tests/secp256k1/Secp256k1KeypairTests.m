@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "SECKeyFactory.h"
 
 static const int KEYS_COUNT = 4;
 

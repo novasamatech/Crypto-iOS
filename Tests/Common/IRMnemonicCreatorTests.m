@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "IRMnemonicCreator.h"
 #import "Constants.h"
 
 @interface IRMnemonicCreatorTests : XCTestCase

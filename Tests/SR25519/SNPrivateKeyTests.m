@@ -7,7 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-@import NovaCrypto;
+#import "sr25519.h"
+#import "SNPrivateKey.h"
 
 static const int KEYS_COUNT = 1;
 

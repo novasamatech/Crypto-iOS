@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "NSData+Hex.h"
 #import "IRBase58TestData+Load.h"
 
 @interface IRBase58Tests : XCTestCase

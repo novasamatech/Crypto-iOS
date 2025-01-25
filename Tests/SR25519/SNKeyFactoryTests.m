@@ -7,7 +7,8 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "SNKeyFactory.h"
+#import "SNBIP39SeedCreator.h"
 #import "SNAccountTestData+Load.h"
 
 @interface SNKeyFactoryTests : XCTestCase
@@ -33,9 +34,16 @@
 - (void)testKeypairDeriviationFromSeed {
     NSError *error = nil;
 
-    NSArray<SNAccountTestData*> *tests = [SNAccountTestData loadFromFilename:@"kusamaPubkeyTestVectors.json"
-                                                                    language:@"english"
-                                                                       error:&error];
+    NSBundle *testBundle;
+#if SWIFT_PACKAGE
+    testBundle = SWIFTPM_MODULE_BUNDLE;
+#else
+    testBundle = [NSBundle bundleForClass:[self class]];
+#endif
+    NSArray<SNAccountTestData*> *tests = [SNAccountTestData loadFromBundle: testBundle
+                                                                  filename:@"kusamaPubkeyTestVectors.json"
+                                                                  language:@"english"
+                                                                     error:&error];
 
     if (error != nil) {
         NSString *message = [error localizedDescription];

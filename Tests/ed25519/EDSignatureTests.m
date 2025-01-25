@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "EDSignatureVerifier.h"
 #import "EDTestConstants.h"
 
 @interface EDSignatureTests : XCTestCase

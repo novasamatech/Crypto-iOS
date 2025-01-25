@@ -6,7 +6,7 @@
 //
 
 #import "SNSignature.h"
-@import sr25519;
+#import "sr25519.h"
 
 @interface SNSignature()
 

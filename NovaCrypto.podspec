@@ -71,11 +71,8 @@ Pod::Spec.new do |s|
   
   s.libraries = "sr25519"
   
-  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => "NO", 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => "YES", 'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519.c" }
-
-  s.test_spec do |ts|
-      ts.source_files = 'Tests/**/*.{h,m}'
-      ts.resources = ['Tests/**/*.json']
-  end
+  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => "NO",
+   'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => "YES",
+   'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519.c" }
 
 end

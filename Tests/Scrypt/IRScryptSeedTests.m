@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "IRSeedCreator+Scrypt.h"
 #import "Constants.h"
 
 static NSString* const TEST_PASSWORD = @"testPassword";

@@ -7,7 +7,9 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "SS58AddressFactory.h"
+#import "SECKeyFactory.h"
+#import "SNPublicKey.h"
 
 static const int ADDRESS_COUNT = 7;
 

@@ -1,0 +1,51 @@
+{
+  "originHash" : "d6f0efc429fdc2d74e08abb49de01e5b39ad2797028683cdf5173b66a596222c",
+  "pins" : [
+    {
+      "identity" : "blake2.c",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/novasamatech/blake2.c",
+      "state" : {
+        "revision" : "7095d1e2dcc892859d4ab8d4b50f102e44e1a773",
+        "version" : "0.1.1"
+      }
+    },
+    {
+      "identity" : "ed25519.c",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/novasamatech/ed25519.c",
+      "state" : {
+        "revision" : "204195f8068fe17e2db8b6fe35ae05ea91f09519",
+        "version" : "0.1.2"
+      }
+    },
+    {
+      "identity" : "scrypt.c",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/v57/scrypt.c.git",
+      "state" : {
+        "revision" : "0a1ac944808cd667a0c2e2457a4729dcdd447085",
+        "version" : "0.1.1"
+      }
+    },
+    {
+      "identity" : "secp256k1.c",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/novasamatech/secp256k1.c",
+      "state" : {
+        "revision" : "ecbbc343d9895e00627fe932bdb983d5e48681d8",
+        "version" : "0.1.4"
+      }
+    },
+    {
+      "identity" : "sr25519.c",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/novasamatech/sr25519.c",
+      "state" : {
+        "revision" : "42baf50397944a6b3e1c2a2cb537f6e55c5b07de",
+        "version" : "0.1.1"
+      }
+    }
+  ],
+  "version" : 3
+}

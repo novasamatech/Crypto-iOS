@@ -7,7 +7,7 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "EDKeyFactory.h"
 #import "EDTestConstants.h"
 
 @interface EDKeypairFactoryTests : XCTestCase

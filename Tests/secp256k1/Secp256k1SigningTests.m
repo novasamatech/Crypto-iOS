@@ -7,7 +7,8 @@
 //
 
 @import XCTest;
-@import NovaCrypto;
+#import "SECKeyFactory.h"
+#import "NSData+Blake2.h"
 
 static const int MESSAGES_COUNT = 1;
 
