@@ -14,9 +14,9 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/novasamatech/secp256k1.c.git", exact: "0.1.4"),
-        .package(url: "https://github.com/novasamatech/ed25519.c.git", exact: "0.1.2"),
-        .package(url: "https://github.com/novasamatech/sr25519.c.git", exact: "0.1.1"),
+        .package(url: "https://github.com/novasamatech/secp256k1.c", exact: "0.1.4"),
+        .package(url: "https://github.com/novasamatech/ed25519.c", exact: "0.1.2"),
+        .package(url: "https://github.com/novasamatech/sr25519.c", exact: "0.1.1"),
         .package(url: "https://github.com/novasamatech/blake2.c", exact: "0.1.1"),
         .package(url: "https://github.com/v57/scrypt.c", exact: "0.1.1")
     ],
