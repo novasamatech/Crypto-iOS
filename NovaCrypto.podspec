@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NovaCrypto'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Provides object oriented wrappers for C/C++ crypto functions used by blockchains.'
 
   s.homepage         = 'https://github.com/novasamatech/Crypto-iOS'
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
     sr.dependency 'NovaCrypto/blake2'
     sr.dependency 'NovaCrypto/Common'
     sr.dependency 'NovaCrypto/BIP39'
-    sr.dependency 'sr25519.c', '~> 0.1.0'
+    sr.dependency 'sr25519c', '~> 0.2.0'
     sr.source_files = 'Sources/sr25519/**/*'
     sr.public_header_files = 'Sources/sr25519/**/*.h'
   end
@@ -69,10 +69,10 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Sources/ss58/**/*.h'
   end
   
-  s.libraries = "sr25519"
+  s.libraries = "sr25519c"
   
   s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => "NO",
    'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => "YES",
-   'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519.c" }
+   'LIBRARY_SEARCH_PATHS' => "${PODS_XCFRAMEWORKS_BUILD_DIR}/sr25519c" }
 
 end

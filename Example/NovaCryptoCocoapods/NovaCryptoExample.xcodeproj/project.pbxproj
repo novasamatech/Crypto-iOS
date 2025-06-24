@@ -12,7 +12,7 @@
 		0C28DF3B2D2F15D30016DB8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C28DF312D2F15D30016DB8E /* Assets.xcassets */; };
 		0C28DF3C2D2F15D30016DB8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C28DF362D2F15D30016DB8E /* Main.storyboard */; };
 		0C28DF3D2D2F15D30016DB8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C28DF342D2F15D30016DB8E /* LaunchScreen.storyboard */; };
-		B3EB660AECA66EF04DC7F88C /* Pods_NovaCrypto_NovaCryptoExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D6462F1884C920DAAC5B9A /* Pods_NovaCrypto_NovaCryptoExample.framework */; };
+		C3F6ED5C52E0D9D6162A191D /* Pods_NovaCrypto_NovaCryptoExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E69AB5687113F4032C5944F /* Pods_NovaCrypto_NovaCryptoExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,12 +23,12 @@
 		0C28DF332D2F15D30016DB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C28DF352D2F15D30016DB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C28DF372D2F15D30016DB8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1E69AB5687113F4032C5944F /* Pods_NovaCrypto_NovaCryptoExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NovaCrypto_NovaCryptoExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F0A7E2437FE15E3B493DE86 /* Pods_NovaCrypto_NovaCryptoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NovaCrypto_NovaCryptoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65FF70B8E6286B424F058C29 /* Pods-NovaCrypto-NovaCryptoExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaCrypto-NovaCryptoExample.debug.xcconfig"; path = "Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample.debug.xcconfig"; sourceTree = "<group>"; };
 		7D0B9DAB8AD0203BB875C42F /* Pods-NovaCrypto-NovaCryptoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaCrypto-NovaCryptoTests.release.xcconfig"; path = "Target Support Files/Pods-NovaCrypto-NovaCryptoTests/Pods-NovaCrypto-NovaCryptoTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4A87EDB6BFEEBE39CD74571 /* Pods-NovaCrypto-NovaCryptoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaCrypto-NovaCryptoTests.debug.xcconfig"; path = "Target Support Files/Pods-NovaCrypto-NovaCryptoTests/Pods-NovaCrypto-NovaCryptoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA8B5A54633BAB76D841DC64 /* Pods-NovaCrypto-NovaCryptoExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NovaCrypto-NovaCryptoExample.release.xcconfig"; path = "Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample.release.xcconfig"; sourceTree = "<group>"; };
-		E8D6462F1884C920DAAC5B9A /* Pods_NovaCrypto_NovaCryptoExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NovaCrypto_NovaCryptoExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3EB660AECA66EF04DC7F88C /* Pods_NovaCrypto_NovaCryptoExample.framework in Frameworks */,
+				C3F6ED5C52E0D9D6162A191D /* Pods_NovaCrypto_NovaCryptoExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,8 +88,8 @@
 		CB21CFA9221E798EB9C460BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E8D6462F1884C920DAAC5B9A /* Pods_NovaCrypto_NovaCryptoExample.framework */,
 				5F0A7E2437FE15E3B493DE86 /* Pods_NovaCrypto_NovaCryptoTests.framework */,
+				1E69AB5687113F4032C5944F /* Pods_NovaCrypto_NovaCryptoExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 				02D61B8321771F400047F7E7 /* Sources */,
 				02D61B8421771F400047F7E7 /* Frameworks */,
 				02D61B8521771F400047F7E7 /* Resources */,
-				00876857A88839D8111013AC /* [CP] Embed Pods Frameworks */,
+				93BDA5131A4C3A2B7C235EC7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -164,23 +164,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00876857A88839D8111013AC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6D26BF1D4FB16C970712CEA5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,6 +184,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93BDA5131A4C3A2B7C235EC7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NovaCrypto-NovaCryptoExample/Pods-NovaCrypto-NovaCryptoExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
