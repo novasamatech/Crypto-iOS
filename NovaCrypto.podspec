@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NovaCrypto'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Provides object oriented wrappers for C/C++ crypto functions used by blockchains.'
 
   s.homepage         = 'https://github.com/novasamatech/Crypto-iOS'
@@ -27,13 +27,6 @@ Pod::Spec.new do |s|
     bip39.dependency 'NovaCrypto/Common'
     bip39.source_files = 'Sources/BIP39/**/*'
     bip39.public_header_files = 'Sources/BIP39/**/*.h'
-  end
-
-  s.subspec 'Scrypt' do |sct|
-    sct.dependency 'NovaCrypto/Common'
-    sct.dependency 'scrypt.c', '~> 0.1'
-    sct.source_files = 'Sources/Scrypt/**/*'
-    sct.public_header_files = 'Sources/Scrypt/**/*.h'
   end
 
   s.subspec 'sr25519' do |sr|
