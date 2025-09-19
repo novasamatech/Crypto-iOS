@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NovaCrypto'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Provides object oriented wrappers for C/C++ crypto functions used by blockchains.'
 
   s.homepage         = 'https://github.com/novasamatech/Crypto-iOS'
