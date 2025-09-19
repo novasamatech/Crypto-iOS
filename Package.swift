@@ -17,8 +17,7 @@ let package = Package(
         .package(url: "https://github.com/novasamatech/secp256k1.c.git", exact: "0.1.4"),
         .package(url: "https://github.com/novasamatech/ed25519.c.git", exact: "0.1.2"),
         .package(url: "https://github.com/novasamatech/sr25519.c.git", exact: "0.2.0"),
-        .package(url: "https://github.com/novasamatech/blake2.c", exact: "0.1.1"),
-        .package(url: "https://github.com/v57/scrypt.c", exact: "0.1.1")
+        .package(url: "https://github.com/novasamatech/blake2.c", exact: "0.1.1")
     ],
     targets: targets + testTargets,
     swiftLanguageVersions: [.v5]
@@ -32,7 +31,6 @@ var targets: [Target] {
                 "BIP39",
                 "blake2",
                 "ed25519",
-                "ScryptExtension",
                 "secp256k1",
                 "sr25519",
                 "ss58",
@@ -71,15 +69,6 @@ var targets: [Target] {
                 .product(name: "secp256k1.c", package: "secp256k1.c"),
                 "Common"
             ],
-            publicHeadersPath: "."
-        ),
-        .target(
-            name: "ScryptExtension",
-            dependencies: [
-                .product(name: "scrypt", package: "scrypt.c"),
-                "Common"
-            ],
-            path: "Sources/Scrypt",
             publicHeadersPath: "."
         ),
         .target(
@@ -131,16 +120,6 @@ var testTargets: [Target] {
                 "ed25519"
             ],
             path: "Tests/ed25519"
-        ),
-        .testTarget(
-            name: "ScryptTests",
-            dependencies: [
-                "ScryptExtension"
-            ],
-            path: "Tests/Scrypt",
-            cSettings: [
-                .headerSearchPath("..")
-            ]
         ),
         .testTarget(
             name: "secp256k1Tests",

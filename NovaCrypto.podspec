@@ -29,13 +29,6 @@ Pod::Spec.new do |s|
     bip39.public_header_files = 'Sources/BIP39/**/*.h'
   end
 
-  s.subspec 'Scrypt' do |sct|
-    sct.dependency 'NovaCrypto/Common'
-    sct.dependency 'scrypt.c', '~> 0.1'
-    sct.source_files = 'Sources/Scrypt/**/*'
-    sct.public_header_files = 'Sources/Scrypt/**/*.h'
-  end
-
   s.subspec 'sr25519' do |sr|
     sr.dependency 'NovaCrypto/blake2'
     sr.dependency 'NovaCrypto/Common'
