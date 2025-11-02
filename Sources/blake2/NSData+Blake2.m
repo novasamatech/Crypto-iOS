@@ -50,7 +50,7 @@ static const int BLAKE2b_MAX_SIZE = 64;
 }
 
 - (nullable NSData *)blake2s:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error {
-    return [self blake2s:BLAKE2s_MAX_SIZE key:nil error:error];
+    return [self blake2s:length key:nil error:error];
 }
 
 - (nullable NSData *)blake2sWithError:(NSError*_Nullable*_Nullable)error {
@@ -93,7 +93,7 @@ static const int BLAKE2b_MAX_SIZE = 64;
 }
 
 - (nullable NSData *)blake2b:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error {
-    return [self blake2b:BLAKE2b_MAX_SIZE key:nil error:error];
+    return [self blake2b:length key:nil error:error];
 }
 
 // runs blake2b with 64 length
