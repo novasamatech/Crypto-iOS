@@ -14,7 +14,7 @@ static const int BLAKE2b_MAX_SIZE = 64;
 
 @implementation NSData (SHA3)
 
-- (nullable NSData *)blake2s:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error {
+- (nullable NSData *)blake2s:(NSUInteger)length key:(nullable NSData*)key error:(NSError*_Nullable*_Nullable)error {
     if (length > BLAKE2s_MAX_SIZE) {
         if (error) {
             NSString *message = [NSString stringWithFormat:@"Length must be not greater then %@", @(BLAKE2s_MAX_SIZE)];
@@ -27,8 +27,13 @@ static const int BLAKE2b_MAX_SIZE = 64;
     }
 
     uint8_t hash[length];
-
-    int result = blake2s(hash, length, NULL, 0, [self bytes], [self length]);
+    int result;
+    
+    if (key) {
+        result = blake2s(hash, length, [key bytes], [key length], [self bytes], [self length]);
+    } else {
+        result = blake2s(hash, length, NULL, 0, [self bytes], [self length]);
+    }
 
     if (result != 0) {
         if (error) {
@@ -44,11 +49,15 @@ static const int BLAKE2b_MAX_SIZE = 64;
     return [NSData dataWithBytes:hash length:length];
 }
 
+- (nullable NSData *)blake2s:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error {
+    return [self blake2s:length key:nil error:error];
+}
+
 - (nullable NSData *)blake2sWithError:(NSError*_Nullable*_Nullable)error {
     return [self blake2s:BLAKE2s_MAX_SIZE error:error];
 }
 
-- (nullable NSData *)blake2b:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error {
+- (nullable NSData *)blake2b:(NSUInteger)length key:(nullable NSData*)key error:(NSError*_Nullable*_Nullable)error {
     if (length > BLAKE2b_MAX_SIZE) {
         if (error) {
             NSString *message = [NSString stringWithFormat:@"Length must be not greater then %@", @(BLAKE2b_MAX_SIZE)];
@@ -61,8 +70,13 @@ static const int BLAKE2b_MAX_SIZE = 64;
     }
 
     uint8_t hash[length];
-
-    int result = blake2b(hash, length, NULL, 0, [self bytes], [self length]);
+    int result;
+    
+    if (key) {
+        result = blake2b(hash, length, [key bytes], [key length], [self bytes], [self length]);
+    } else {
+        result = blake2b(hash, length, NULL, 0, [self bytes], [self length]);
+    }
 
     if (result != 0) {
         if (error) {
@@ -76,6 +90,10 @@ static const int BLAKE2b_MAX_SIZE = 64;
     }
 
     return [NSData dataWithBytes:hash length:length];
+}
+
+- (nullable NSData *)blake2b:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error {
+    return [self blake2b:length key:nil error:error];
 }
 
 // runs blake2b with 64 length
