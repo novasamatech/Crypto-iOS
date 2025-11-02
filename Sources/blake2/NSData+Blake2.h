@@ -14,10 +14,14 @@ typedef NS_ENUM(NSUInteger, IRBlake2Error) {
 
 @interface NSData (Blake2)
 
+- (nullable NSData *)blake2s:(NSUInteger)length key:(nullable NSData*)key error:(NSError*_Nullable*_Nullable)error;
+
 - (nullable NSData *)blake2s:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error;
 
 // runs blake2s with 32 length
 - (nullable NSData *)blake2sWithError:(NSError*_Nullable*_Nullable)error;
+
+- (nullable NSData *)blake2b:(NSUInteger)length key:(nullable NSData*)key error:(NSError*_Nullable*_Nullable)error;
 
 - (nullable NSData *)blake2b:(NSUInteger)length error:(NSError*_Nullable*_Nullable)error;
 
