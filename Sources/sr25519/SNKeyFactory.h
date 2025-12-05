@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSUInteger, SNKeyFactoryError) {
     SNKeyFactoryErrorInvalidSeed,
-    SNKeyFactoryErrorInvalidChaincode
+    SNKeyFactoryErrorInvalidChaincode,
+    SNKeyFactoryErrorInvalidSecret
 };
 
 @protocol SNKeyFactoryProtocol
