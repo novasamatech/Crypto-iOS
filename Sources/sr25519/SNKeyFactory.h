@@ -30,6 +30,9 @@ typedef NS_ENUM(NSUInteger, SNKeyFactoryError) {
                                    chaincode:(nonnull NSData*)chaincode
                                        error:(NSError*_Nullable*_Nullable)error;
 
+- (nullable SNPublicKey*)createPublicKeyFromSecret:(nonnull NSData*)secret
+                                       error:(NSError*_Nullable*_Nullable)error;
+
 @end
 
 @interface SNKeyFactory : NSObject<SNKeyFactoryProtocol>
