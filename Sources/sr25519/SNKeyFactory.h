@@ -10,7 +10,8 @@
 
 typedef NS_ENUM(NSUInteger, SNKeyFactoryError) {
     SNKeyFactoryErrorInvalidSeed,
-    SNKeyFactoryErrorInvalidChaincode
+    SNKeyFactoryErrorInvalidChaincode,
+    SNKeyFactoryErrorInvalidSecret
 };
 
 @protocol SNKeyFactoryProtocol
@@ -28,6 +29,9 @@ typedef NS_ENUM(NSUInteger, SNKeyFactoryError) {
 
 - (nullable SNPublicKey*)createPublicKeySoft:(nonnull SNPublicKey*)publicKey
                                    chaincode:(nonnull NSData*)chaincode
+                                       error:(NSError*_Nullable*_Nullable)error;
+
+- (nullable SNPublicKey*)createPublicKeyFromSecret:(nonnull NSData*)secret
                                        error:(NSError*_Nullable*_Nullable)error;
 
 @end

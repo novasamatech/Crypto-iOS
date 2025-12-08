@@ -88,8 +88,30 @@
 
     sr25519_derive_public_soft(publicKeyBytes, parentPublicKey.rawData.bytes, chaincode.bytes);
 
-    NSData *publicKeyData = [NSData dataWithBytes:publicKeyBytes length:SR25519_KEYPAIR_SIZE];
+    NSData *publicKeyData = [NSData dataWithBytes:publicKeyBytes length:SR25519_PUBLIC_SIZE];
 
+    return [[SNPublicKey alloc] initWithRawData:publicKeyData error:error];
+}
+
+- (nullable SNPublicKey*)createPublicKeyFromSecret:(nonnull NSData*)secret
+                                             error:(NSError*_Nullable*_Nullable)error {
+    if (secret.length != SR25519_SECRET_SIZE) {
+        if (error) {
+            NSString *message = [NSString stringWithFormat:@"Invalid secret length %@ but expected %@",
+                                 @(secret.length), @(SR25519_SECRET_SIZE)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class])
+                                         code:SNKeyFactoryErrorInvalidSecret
+                                     userInfo:@{NSLocalizedDescriptionKey : message}];
+        }
+        return nil;
+    }
+    
+    uint8_t publicKeyBytes[SR25519_PUBLIC_SIZE];
+    
+    sr25519_secret_to_public_key(publicKeyBytes, secret.bytes);
+    
+    NSData *publicKeyData = [NSData dataWithBytes:publicKeyBytes length:SR25519_PUBLIC_SIZE];
+    
     return [[SNPublicKey alloc] initWithRawData:publicKeyData error:error];
 }
 
