@@ -8,6 +8,30 @@
 #import "SNKeyFactory.h"
 #import "sr25519.h"
 
+// MARK: - Canonical scalar validation (schnorrkel 0.9.1 from_bytes)
+// Curve25519 group order L = 2^252 + 27742317777372353535851937790883648493, LE.
+static const uint8_t SNRistrettoGroupOrder[32] = {
+    0xed, 0xd3, 0xf5, 0x5c, 0x1a, 0x63, 0x12, 0x58,
+    0xd6, 0x9c, 0xf7, 0xa2, 0xde, 0xf9, 0xde, 0x14,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10
+};
+
+// Returns YES iff s (LE, 32 bytes) is strictly less than L.
+static BOOL SNIsCanonicalScalar(const uint8_t s[32]) {
+    for (int i = 31; i >= 0; i--) {
+        if (s[i] < SNRistrettoGroupOrder[i]) return YES;
+        if (s[i] > SNRistrettoGroupOrder[i]) return NO;
+    }
+    return NO; // s == L rejected
+}
+
+static BOOL SNIsValidCanonicalScalar(const uint8_t s[32]) {
+    BOOL nonZero = NO;
+    for (int i = 0; i < 32; i++) if (s[i]) { nonZero = YES; break; }
+    return nonZero && SNIsCanonicalScalar(s);
+}
+
 @implementation SNKeyFactory
 
 - (id<SNKeypairProtocol> _Nullable)createKeypairFromSeed:(nonnull NSData*)seed
@@ -102,6 +126,19 @@
             *error = [NSError errorWithDomain:NSStringFromClass([self class])
                                          code:SNKeyFactoryErrorInvalidSecret
                                      userInfo:@{NSLocalizedDescriptionKey : message}];
+        }
+        return nil;
+    }
+    // Mirror schnorrkel 0.9.1 SecretKey::from_bytes Scalar::from_canonical_bytes:
+    //   1. high bit of scalar must be clear
+    //   2. scalar must be < L (canonical)
+    // Failing either causes Rust panic in create_secret
+    const uint8_t *s = secret.bytes;
+    if ((s[31] & 0x80) != 0 || !SNIsValidCanonicalScalar(s)) {
+        if (error) {
+            *error = [NSError errorWithDomain:NSStringFromClass([self class])
+                                         code:SNKeyFactoryErrorInvalidSecret
+                                     userInfo:@{NSLocalizedDescriptionKey: @"sr25519 secret scalar is not canonical (>= group order)"}];
         }
         return nil;
     }

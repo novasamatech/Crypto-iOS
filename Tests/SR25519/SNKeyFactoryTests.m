@@ -11,6 +11,12 @@
 #import "SNBIP39SeedCreator.h"
 #import "SNAccountTestData+Load.h"
 
+enum {
+    kSecretSize = 64,
+    kPublicSize = 32,
+    kSeedSize   = 32
+};
+
 @interface SNKeyFactoryTests : XCTestCase
 
 @property(nonatomic, strong)SNKeyFactory *keysFactory;
@@ -92,6 +98,106 @@
 
         XCTAssertEqualObjects([keypair.publicKey.rawData toHexString], testData.publicKey);
     }
+}
+
+/// Build a canonical ed25519-style 64-byte secret: low 3 bits of byte 0 clear,
+/// top 3 bits of byte 31 == 0b010.
+- (NSData *)canonicalSecretFromPattern:(uint8_t)fill {
+    uint8_t bytes[kSecretSize];
+    memset(bytes, fill, kSecretSize);
+    bytes[0]  &= 0xF8;             // clear low 3 bits
+    bytes[31] &= 0x7F;             // clear bit 7
+    bytes[31] = (bytes[31] & 0x3F) | 0x40; // top 3 bits = 010
+    return [NSData dataWithBytes:bytes length:kSecretSize];
+}
+
+#pragma mark - Length guard
+
+- (void)testReturnsNilAndErrorOnShortSecret {
+    NSData *secret = [NSData dataWithBytes:(uint8_t[]){0} length:kSeedSize];
+    NSError *error = nil;
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:&error];
+    XCTAssertNil(publicKey);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, SNKeyFactoryErrorInvalidSecret);
+}
+
+- (void)testReturnsNilAndErrorOnLongSecret {
+    NSMutableData *secret = [NSMutableData dataWithLength:kSecretSize + 1];
+    NSError *error = nil;
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:&error];
+    XCTAssertNil(publicKey);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, SNKeyFactoryErrorInvalidSecret);
+}
+
+- (void)testReturnsNilOnEmptySecret {
+    NSError *error = nil;
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:[NSData data] error:&error];
+    XCTAssertNil(publicKey);
+    XCTAssertNotNil(error);
+}
+
+- (void)testTolerantToNilErrorPointerOnLengthViolation {
+    NSData *secret = [NSData dataWithBytes:(uint8_t[]){0} length:8];
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:NULL];
+    XCTAssertNil(publicKey);
+}
+
+- (void)testMatchesPublicKeyDerivedFromSameSeedKeypair {
+    // Derive a keypair from a known seed, then re-derive the public key from
+    // the keypair's secret bytes and verify equality.
+    uint8_t seedBytes[kSeedSize];
+    memset(seedBytes, 0xAB, kSeedSize);
+    NSData *seed = [NSData dataWithBytes:seedBytes length:kSeedSize];
+
+    NSError *error = nil;
+    SNKeypair *keypair = [self.keysFactory createKeypairFromSeed:seed error:&error];
+    XCTAssertNotNil(keypair);
+    XCTAssertNil(error);
+
+    NSData *secretBytes = [keypair.privateKey rawData];
+    XCTAssertEqual(secretBytes.length, kSecretSize);
+
+    NSError *deriveError = nil;
+    SNPublicKey *derived = [self.keysFactory createPublicKeyFromSecret:secretBytes error:&deriveError];
+    XCTAssertNotNil(derived);
+    XCTAssertNil(deriveError);
+    XCTAssertEqualObjects(derived.rawData, keypair.publicKey.rawData);
+}
+
+#pragma mark - Non-canonical input (documented FFI crash)
+
+// These inputs panic inside Rust `SecretKey::from_ed25519_bytes` and abort the
+// process via `panic_cannot_unwind`
+
+- (void)testAllZeroSecretShouldReturnError {
+    NSMutableData *secret = [NSMutableData dataWithLength:kSecretSize];
+    NSError *error = nil;
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:&error];
+    XCTAssertNil(publicKey);
+    XCTAssertNotNil(error);
+}
+
+- (void)testAllOnesSecretShouldReturnError {
+    uint8_t bytes[kSecretSize];
+    memset(bytes, 0xFF, kSecretSize);
+    NSData *secret = [NSData dataWithBytes:bytes length:kSecretSize];
+    NSError *error = nil;
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:&error];
+    XCTAssertNil(publicKey);
+    XCTAssertNotNil(error);
+}
+
+- (void)testInvalidHighBitsShouldReturnError {
+    uint8_t bytes[kSecretSize];
+    memset(bytes, 0x01, kSecretSize);
+    bytes[31] = 0xE0; // top 3 bits = 111, violates required 010
+    NSData *secret = [NSData dataWithBytes:bytes length:kSecretSize];
+    NSError *error = nil;
+    SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:&error];
+    XCTAssertNil(publicKey);
+    XCTAssertNotNil(error);
 }
 
 @end
