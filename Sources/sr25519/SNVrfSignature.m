@@ -6,9 +6,6 @@
 #import "SNVrfSignature.h"
 #import "sr25519.h"
 
-const NSUInteger SNVrfPreOutputSize = SR25519_VRF_OUTPUT_SIZE;
-const NSUInteger SNVrfProofSize = SR25519_VRF_PROOF_SIZE;
-
 @interface SNVrfSignature()
 
 @property(copy, nonatomic) NSData *preOutput;
@@ -21,7 +18,7 @@ const NSUInteger SNVrfProofSize = SR25519_VRF_PROOF_SIZE;
 - (nullable instancetype)initWithPreOutput:(nonnull NSData*)preOutput
                                      proof:(nonnull NSData*)proof
                                      error:(NSError*_Nullable*_Nullable)error {
-    if (preOutput.length != SNVrfPreOutputSize || proof.length != SNVrfProofSize) {
+    if (preOutput.length != SR25519_VRF_OUTPUT_SIZE || proof.length != SR25519_VRF_PROOF_SIZE) {
         if (error) {
             *error = [NSError errorWithDomain:NSStringFromClass([self class])
                                          code:0
@@ -40,7 +37,7 @@ const NSUInteger SNVrfProofSize = SR25519_VRF_PROOF_SIZE;
 
 - (nullable instancetype)initWithRawData:(nonnull NSData*)data
                                    error:(NSError*_Nullable*_Nullable)error {
-    if (data.length != SNVrfPreOutputSize + SNVrfProofSize) {
+    if (data.length != SR25519_VRF_OUTPUT_SIZE + SR25519_VRF_PROOF_SIZE) {
         if (error) {
             *error = [NSError errorWithDomain:NSStringFromClass([self class])
                                          code:0
@@ -50,15 +47,15 @@ const NSUInteger SNVrfProofSize = SR25519_VRF_PROOF_SIZE;
     }
 
     if (self = [super init]) {
-        self.preOutput = [data subdataWithRange:NSMakeRange(0, SNVrfPreOutputSize)];
-        self.proof = [data subdataWithRange:NSMakeRange(SNVrfPreOutputSize, SNVrfProofSize)];
+        self.preOutput = [data subdataWithRange:NSMakeRange(0, SR25519_VRF_OUTPUT_SIZE)];
+        self.proof = [data subdataWithRange:NSMakeRange(SR25519_VRF_OUTPUT_SIZE, SR25519_VRF_PROOF_SIZE)];
     }
 
     return self;
 }
 
 - (nonnull NSData*)rawData {
-    NSMutableData *data = [NSMutableData dataWithCapacity:SNVrfPreOutputSize + SNVrfProofSize];
+    NSMutableData *data = [NSMutableData dataWithCapacity:SR25519_VRF_OUTPUT_SIZE + SR25519_VRF_PROOF_SIZE];
     [data appendData:self.preOutput];
     [data appendData:self.proof];
     return data;

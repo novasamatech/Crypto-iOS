@@ -5,9 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSUInteger SNVrfPreOutputSize;
-extern const NSUInteger SNVrfProofSize;
-
 @interface SNVrfSignature : NSObject
 
 @property(nonatomic, readonly, nonnull) NSData *preOutput;

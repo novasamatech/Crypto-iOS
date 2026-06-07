@@ -8,6 +8,7 @@
 #import "SNVrfSigner.h"
 #import "SNVrfVerifier.h"
 #import "SNVrfField.h"
+#import "sr25519.h"
 
 @interface SNVrfTests : XCTestCase
 
@@ -62,8 +63,8 @@
     SNVrfSignature *signature = [signer signWithLabel:label fields:fields error:&error];
     XCTAssertNotNil(signature);
     XCTAssertNil(error);
-    XCTAssertEqual(signature.preOutput.length, SNVrfPreOutputSize);
-    XCTAssertEqual(signature.proof.length, SNVrfProofSize);
+    XCTAssertEqual(signature.preOutput.length, SR25519_VRF_OUTPUT_SIZE);
+    XCTAssertEqual(signature.proof.length, SR25519_VRF_PROOF_SIZE);
 
     SNVrfVerifier *verifier = [[SNVrfVerifier alloc] init];
     BOOL valid = [verifier verify:signature publicKey:keypair.publicKey label:label fields:fields];
@@ -189,7 +190,7 @@
     XCTAssertNotNil(original);
 
     NSData *raw = [original rawData];
-    XCTAssertEqual(raw.length, SNVrfPreOutputSize + SNVrfProofSize);
+    XCTAssertEqual(raw.length, SR25519_VRF_OUTPUT_SIZE + SR25519_VRF_PROOF_SIZE);
 
     SNVrfSignature *restored = [[SNVrfSignature alloc] initWithRawData:raw error:&error];
     XCTAssertNotNil(restored);
