@@ -1,5 +1,5 @@
 {
-  "originHash" : "fe22ae4e2373f60d0dd354b26c6b331d2035438eb9eb7c3277330143f0c44908",
+  "originHash" : "241512ea2a2e9a2ce60445da753fb53b248be781541edb2a924d0d28275134a3",
   "pins" : [
     {
       "identity" : "blake2.c",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/novasamatech/sr25519.c.git",
       "state" : {
-        "branch" : "feature/public-from-secret",
-        "revision" : "e50b7e0f0340e3280f140093a4ff831da1dc95b9"
+        "revision" : "8ffec3fe0f0b169eaaba2537a3c66ff38fdb25df",
+        "version" : "0.3.0"
       }
     }
   ],
