@@ -55,7 +55,16 @@
 
     if (self = [super init]) {
         uint8_t secret_out[SR25519_SECRET_SIZE];
-        sr25519_from_ed25519_bytes(secret_out, data.bytes);
+        Sr25519SignatureResult result = sr25519_from_ed25519_bytes(secret_out, data.bytes);
+
+        if (result != Ok) {
+            if (error) {
+                *error = [NSError errorWithDomain:NSStringFromClass([self class])
+                                             code:IRCryptoKeyErrorInvalidRawData
+                                         userInfo:@{NSLocalizedDescriptionKey: @"sr25519 conversion from ed25519 failed"}];
+            }
+            return nil;
+        }
 
         self.rawData = [NSData dataWithBytes:secret_out length:SR25519_SECRET_SIZE];
     }
@@ -63,9 +72,13 @@
     return self;
 }
 
-- (nonnull NSData*)toEd25519Data {
+- (nullable NSData*)toEd25519Data {
     uint8_t secret_out[SR25519_SECRET_SIZE];
-    sr25519_to_ed25519_bytes(secret_out, _rawData.bytes);
+    Sr25519SignatureResult result = sr25519_to_ed25519_bytes(secret_out, _rawData.bytes);
+
+    if (result != Ok) {
+        return nil;
+    }
 
     return [NSData dataWithBytes:secret_out length:SR25519_SECRET_SIZE];
 }

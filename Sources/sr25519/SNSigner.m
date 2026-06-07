@@ -28,15 +28,24 @@
                               error:(NSError*_Nullable*_Nullable)error {
     uint8_t signatureBytes[SR25519_SIGNATURE_SIZE];
 
-    sr25519_sign(signatureBytes,
+    Sr25519SignatureResult result = sr25519_sign(signatureBytes,
                  _keypair.publicKey.rawData.bytes,
                  _keypair.privateKey.rawData.bytes,
                  originalData.bytes,
                  originalData.length);
 
+    if (result != Ok) {
+        if (error) {
+            *error = [NSError errorWithDomain:NSStringFromClass([self class])
+                                         code:0
+                                     userInfo:@{NSLocalizedDescriptionKey: @"sr25519 signing failed"}];
+        }
+        return nil;
+    }
+
     NSData *signatureData = [NSData dataWithBytes:signatureBytes length:SR25519_SIGNATURE_SIZE];
 
-    return [[SNSignature alloc] initWithRawData:signatureData error:error];;
+    return [[SNSignature alloc] initWithRawData:signatureData error:error];
 }
 
 @end

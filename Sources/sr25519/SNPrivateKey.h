@@ -13,6 +13,6 @@
 - (nullable instancetype)initWithFromEd25519:(nonnull NSData*)data
                                        error:(NSError*_Nullable*_Nullable)error;
 
-- (nonnull NSData*)toEd25519Data;
+- (nullable NSData*)toEd25519Data;
 
 @end

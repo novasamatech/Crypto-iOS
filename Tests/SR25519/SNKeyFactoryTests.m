@@ -100,17 +100,6 @@ enum {
     }
 }
 
-/// Build a canonical ed25519-style 64-byte secret: low 3 bits of byte 0 clear,
-/// top 3 bits of byte 31 == 0b010.
-- (NSData *)canonicalSecretFromPattern:(uint8_t)fill {
-    uint8_t bytes[kSecretSize];
-    memset(bytes, fill, kSecretSize);
-    bytes[0]  &= 0xF8;             // clear low 3 bits
-    bytes[31] &= 0x7F;             // clear bit 7
-    bytes[31] = (bytes[31] & 0x3F) | 0x40; // top 3 bits = 010
-    return [NSData dataWithBytes:bytes length:kSecretSize];
-}
-
 #pragma mark - Length guard
 
 - (void)testReturnsNilAndErrorOnShortSecret {
@@ -166,17 +155,15 @@ enum {
     XCTAssertEqualObjects(derived.rawData, keypair.publicKey.rawData);
 }
 
-#pragma mark - Non-canonical input (documented FFI crash)
+#pragma mark - Non-canonical input (Rust returns error)
 
-// These inputs panic inside Rust `SecretKey::from_ed25519_bytes` and abort the
-// process via `panic_cannot_unwind`
-
-- (void)testAllZeroSecretShouldReturnError {
+- (void)testAllZeroSecretIsAccepted {
+    // schnorrkel 0.9.1 accepts all-zero 64-byte secret (zero scalar + zero nonce)
     NSMutableData *secret = [NSMutableData dataWithLength:kSecretSize];
     NSError *error = nil;
     SNPublicKey *publicKey = [self.keysFactory createPublicKeyFromSecret:secret error:&error];
-    XCTAssertNil(publicKey);
-    XCTAssertNotNil(error);
+    XCTAssertNotNil(publicKey);
+    XCTAssertNil(error);
 }
 
 - (void)testAllOnesSecretShouldReturnError {
