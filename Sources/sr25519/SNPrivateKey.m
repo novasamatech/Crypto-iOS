@@ -55,7 +55,7 @@
 
     if (self = [super init]) {
         uint8_t secret_out[SR25519_SECRET_SIZE];
-        Sr25519SignatureResult result = sr25519_from_ed25519_bytes(secret_out, data.bytes);
+        Sr25519Result result = sr25519_from_ed25519_bytes(secret_out, data.bytes);
 
         if (result != Ok) {
             if (error) {
@@ -74,7 +74,7 @@
 
 - (nullable NSData*)toEd25519Data {
     uint8_t secret_out[SR25519_SECRET_SIZE];
-    Sr25519SignatureResult result = sr25519_to_ed25519_bytes(secret_out, _rawData.bytes);
+    Sr25519Result result = sr25519_to_ed25519_bytes(secret_out, _rawData.bytes);
 
     if (result != Ok) {
         return nil;

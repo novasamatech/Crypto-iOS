@@ -26,7 +26,7 @@
 
     uint8_t keypair[SR25519_KEYPAIR_SIZE];
 
-    Sr25519SignatureResult result = sr25519_keypair_from_seed(keypair, seed.bytes);
+    Sr25519Result result = sr25519_keypair_from_seed(keypair, seed.bytes);
 
     if (result != Ok) {
         if (error) {
@@ -55,7 +55,7 @@
 
     uint8_t keypair[SR25519_KEYPAIR_SIZE];
 
-    Sr25519SignatureResult result = sr25519_derive_keypair_hard(keypair, parent.rawData.bytes, chaincode.bytes);
+    Sr25519Result result = sr25519_derive_keypair_hard(keypair, parent.rawData.bytes, chaincode.bytes);
 
     if (result != Ok) {
         if (error) {
@@ -84,7 +84,7 @@
 
     uint8_t keypair[SR25519_KEYPAIR_SIZE];
 
-    Sr25519SignatureResult result = sr25519_derive_keypair_soft(keypair, parent.rawData.bytes, chaincode.bytes);
+    Sr25519Result result = sr25519_derive_keypair_soft(keypair, parent.rawData.bytes, chaincode.bytes);
 
     if (result != Ok) {
         if (error) {
@@ -113,7 +113,7 @@
 
     uint8_t publicKeyBytes[SR25519_PUBLIC_SIZE];
 
-    Sr25519SignatureResult result = sr25519_derive_public_soft(publicKeyBytes, parentPublicKey.rawData.bytes, chaincode.bytes);
+    Sr25519Result result = sr25519_derive_public_soft(publicKeyBytes, parentPublicKey.rawData.bytes, chaincode.bytes);
 
     if (result != Ok) {
         if (error) {
@@ -144,7 +144,7 @@
 
     uint8_t publicKeyBytes[SR25519_PUBLIC_SIZE];
 
-    Sr25519SignatureResult result = sr25519_secret_to_public_key(publicKeyBytes, secret.bytes);
+    Sr25519Result result = sr25519_secret_to_public_key(publicKeyBytes, secret.bytes);
 
     if (result != Ok) {
         if (error) {

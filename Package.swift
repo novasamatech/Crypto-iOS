@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/novasamatech/secp256k1.c.git", exact: "0.1.4"),
         .package(url: "https://github.com/novasamatech/ed25519.c.git", exact: "0.1.2"),
-        .package(url: "https://github.com/novasamatech/sr25519.c.git", revision: "24134dc0e110fa7c3ca6bc4e55ff6fdc7f27728f"),
+        .package(url: "https://github.com/novasamatech/sr25519.c.git", revision: "5cc5cb2499577451a0f9a21ab4c405838b18ef97"),
         .package(url: "https://github.com/novasamatech/blake2.c", exact: "0.1.1")
     ],
     targets: targets + testTargets,

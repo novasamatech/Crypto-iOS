@@ -28,7 +28,7 @@
                               error:(NSError*_Nullable*_Nullable)error {
     uint8_t signatureBytes[SR25519_SIGNATURE_SIZE];
 
-    Sr25519SignatureResult result = sr25519_sign(signatureBytes,
+    Sr25519Result result = sr25519_sign(signatureBytes,
                  _keypair.publicKey.rawData.bytes,
                  _keypair.privateKey.rawData.bytes,
                  originalData.bytes,
